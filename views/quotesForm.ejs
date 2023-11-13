@@ -1,0 +1,44 @@
+
+    <!-- include header -->
+    <%- include('partials/header.ejs') %> 
+
+    <h1 class="test text-2xl font-bold px-5 p-3 mx-auto">
+      Have your say on the Nigerian present situation?
+    </h1>
+    <div class="w-11/12 sm:w-4/5 max-w-3xl mx-auto">
+      <form
+        class="flex flex-col sm:w-5/6 z-99 mx-auto justify-center align-middle rounded-xl text-gray-950 bg-slate-400 my-4 px-auto gap-3"
+        action="/quotesForm"
+        method="POST"
+      >
+        <label class="font-semibold mt-4 mb-[-0.7rem]" for="quotes"
+          >Your comments</label
+        >
+        <!-- <div class="h-40 max-h-40 break-words"> -->
+        <textarea
+          name="quotes"
+          id="quote"
+          required
+          placeholder="Your thoughts"
+          class="rounded-xl p-4 w-5/6 mx-auto bg-slate-200 text-lg overflow-auto h-44">
+          </textarea>
+        <!-- </div> -->
+        <label class="font-semibold mt-2 mb-[-0.7rem]" for="author"
+          >Your name</label
+        >
+        <input
+          name="author"
+          id="author"
+          placeholder="your nickname"
+          class="rounded-xl text-center p-4 w-5/6 mx-auto bg-slate-200 text-lg"
+        />
+        <input
+          type="submit"
+          value="Send"
+          class="font-bold text-lg text-center cursor-pointer bg-slate-500 w-32 hover:bg-slate-700 text-white mx-auto py-2 px-4 mb-3 rounded-xl focus:outline-none focus:shadow-outline"
+        />
+      </form>
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+
