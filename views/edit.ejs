@@ -1,44 +1,44 @@
 
-    <!-- include header -->
-    <%- include('partials/header.ejs') %>
+      <!-- include header -->
+      <%- include('partials/header.ejs') %>
 
-    <H1 class="test text-2xl font-bold px-5 p-3 mx-auto"
-      >Write a new quote to replace the previous</H1
-    >
-    <div
-      class="h-auto flex flex-wrap justify-center items-center gap-6 w-11/12 md:w-5/6 rounded-xl mx-auto bg-slate-600 p-4 sm:p-8"
-    >
-      <% if(locals.quotes) { %>
-      <div class="w-11/12 sm:w-4/5 justify-center items-center">
-        <form
-          action="/edit/<%= id %>"
-          class=" sm:w-5/6 z-99 mx-auto lg:flex-row max-w-3xl flex flex-col  p-4 justify-center items-center rounded-xl text-gray-950 bg-slate-400 my-4 px-auto gap-3"
-          method="POST"
-        >
-          <textarea
-            type="text"
-            name="quotes"
-            id="quotes"
-            value="<%= quotes %>"
-            required
-            placeholder="Your thoughts"
-            class="rounded-xl p-4 w-full h-64 mx-auto bg-slate-200 text-lg"
-          >"<%= quotes %>"</textarea>  
-          <div class="flex lg:flex-col flex-row gap-3 justify-center items-center">
-          <input
-            type="submit"
-            value="Update"
-            class="font-bold text-lg text-center cursor-pointer bg-green-600 w-24 hover:bg-slate-700 text-white mx-auto py-2 px-4  mb-0 rounded-xl focus:outline-none focus:shadow-outline"
-          />
-          <a class="font-bold text-lg text-center cursor-pointer  w-24 hover:bg-slate-700 text-white mx-auto py-2 px-4  mb-0 bg-yellow-600 rounded-xl focus:outline-none focus:shadow-outline" href="/">Cancel</a></div>
-        </form>
-        
+      <H1 class="test text-2xl font-bold px-5 p-3 mx-auto"
+        >Edit and update your quote</H1
+      >
+      <div
+        class="h-auto flex flex-wrap justify-center items-center gap-6 w-11/12 md:w-5/6 rounded-xl mx-auto bg-slate-600 p-4 sm:p-8"
+      >
+      <!-- Ensure selected quote exists -->
+        <% if(locals.selectedQuote) { %>
+        <div class="w-11/12 sm:w-4/5 justify-center items-center">
+          <form
+            action="/edit/<%= selectedQuote.id %>?_method=PATCH"
+            method="POST"
+            class=" sm:w-5/6 z-99 mx-auto lg:flex-row max-w-3xl flex flex-col  p-4 justify-center items-center rounded-xl text-gray-950 bg-slate-400 my-4 px-auto gap-3"
+          >
+            <textarea
+              type="text"
+              name="quotes"
+              id="quotes"
+              required
+              placeholder="Your thoughts"
+              class="rounded-xl p-4 w-5/6 h-64 mx-auto bg-slate-200 text-lg"
+            >"<%= selectedQuote.quotes %>"</textarea>  
+            <div class="flex lg:flex-col flex-row gap-3 justify-center items-center">
+            <input
+              type="submit"
+              value="Update"
+              class="font-bold text-lg text-center cursor-pointer bg-green-600 w-24 hover:bg-slate-700 text-white mx-auto py-2 px-4  mb-0 rounded-xl focus:outline-none focus:shadow-outline"
+            />
+            <a class="font-bold text-lg text-center cursor-pointer  w-32 hover:bg-slate-700 text-white mx-auto py-2 px-4  mb-0 bg-yellow-600 rounded-xl focus:outline-none focus:shadow-outline" href="/">Cancel</a></div>
+          </form>        
+        </div>
+        <% } else { %>
+        <h3>No quote available for editing</h3>
+          <a class="font-bold text-lg text-center cursor-pointer  w-32 hover:bg-slate-700 text-white mx-auto py-2 px-4  mb-0 bg-green-600 rounded-xl focus:outline-none focus:shadow-outline" href="/">Back</a>
+        <% } %>
+
       </div>
-      <% } else { %>
-      <h3>No quote available for editing</h3>
-      <% } %>
-      
-    </div>
-    <!-- include footer -->
-    <%- include('partials/footer.ejs') %>
-  
+      <!-- include footer -->
+      <%- include('partials/footer.ejs') %>
+
